@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "description": "App to consult the Netflix catalog",
   "main": "src/index.js",
-  "author": "Marcelo Dapper",
+  "author": "Marcelo Dapper <marcelo.dapper@gmail.com>",
   "license": "MIT",
   "scripts": {
     "prestart": "rimraf ./public/*",
     "start": "./node_modules/.bin/webpack-dev-server",
-    "lint": "eslint src",
-    "test": "jest --coverage",
+    "lint": "eslint src/**/**/*.js webpack.config.js webpack.config.production.js",
+    "test": "cross-env NODE_ENV=test jest",
+    "cover": "npm run test -- --coverage",
+    "update-test": "npm run test -- -u",
     "test:watch": "jest --watch",
     "prebuild": "rimraf ./public/*",
     "build": "cross-env NODE_ENV=production webpack -p --config webpack.config.production.js"
@@ -41,6 +43,7 @@
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
+    "babel-jest": "^20.0.3",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.24.1",
